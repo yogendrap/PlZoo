@@ -1,0 +1,13 @@
+{
+    "database": {
+        "default": {
+            "host": "127.0.0.1",
+            "port": "",
+            "database": "plzoo",
+            "username": "root",
+            "password": "123456",
+            "driver": "mysql"
+        },
+        "nosql": {}
+    }
+}

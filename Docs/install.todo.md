@@ -1,5 +1,5 @@
 Ask for configuration 
-    -> need point for configuration to cover
+    -> need points for configuration to cover
 validate configuration
 Create database
 Create default tables 

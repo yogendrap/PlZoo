@@ -52,7 +52,7 @@ export default class Response {
     links(links) {
         var link = this.get('Link') || '';
         if (link) link += ', ';
-        return this.set('Link', link + Object.keys(links).map(function(rel) {
+        return this.set('Link', link + Object.keys(links).map(function (rel) {
             return '<' + links[rel] + '>; rel="' + rel + '"';
         }).join(', '));
     }
@@ -77,7 +77,7 @@ export default class Response {
                 if (charset) value += '; charset=' + charset.toLowerCase();
             }
 
-            this.set(field, value);
+            this.response.setHeader(field, value);
         } else {
             for (var key in field) {
                 this.set(key, field[key]);
@@ -160,8 +160,8 @@ export default class Response {
         return this;
     }
 
-    end(...args) {
-        this.response.end(args);
+    end(chuck) {
+        this.response.end(chuck);
     }
     /**
      * Send a response.
@@ -291,7 +291,7 @@ export default class Response {
         var file = send(req, pathname, opts);
 
         // transfer
-        sendfile(res, file, opts, function(err) {
+        sendfile(res, file, opts, function (err) {
             if (done) return done(err);
             if (err && err.code === 'EISDIR') return next();
 
@@ -313,16 +313,16 @@ export default class Response {
 
         // Support text/{plain,html} by default
         this.format({
-            text: function() {
+            text: function () {
                 body = STATUS_CODES[status] + '. Redirecting to ' + encodeURI(address);
             },
 
-            html: function() {
+            html: function () {
                 var u = escapeHtml(address);
                 body = '<p>' + STATUS_CODES[status] + '. Redirecting to <a href="' + u + '">' + u + '</a></p>';
             },
 
-            default: function() {
+            default: function () {
                 body = '';
             }
         });
@@ -383,7 +383,7 @@ export default class Response {
         } else {
             var err = new Error('Not Acceptable');
             err.status = err.statusCode = 406;
-            err.types = normalizeTypes(keys).map(function(o) { return o.value });
+            err.types = normalizeTypes(keys).map(function (o) { return o.value });
             next(err);
         }
 
@@ -446,7 +446,7 @@ function sendfile(res, file, options, callback) {
         if (err) return onerror(err);
         if (done) return;
 
-        setImmediate(function() {
+        setImmediate(function () {
             if (streaming !== false && !done) {
                 onaborted();
                 return;

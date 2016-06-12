@@ -6,7 +6,7 @@ export class Database {
     protected static $databaseInfo = {};
     protected static connections = {};
 
-    static addConnectionInfo($key: number, $info: IConnection): void {
+    static addConnectionInfo($key: string, $info: IConnection): void {
         if (!Database.$databaseInfo[$key]) {
             Database.$databaseInfo[$key] = $info;
         }

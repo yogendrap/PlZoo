@@ -9,6 +9,7 @@
         "removeComments": false,
         "noImplicitAny": false,
         "outDir": "./_build",
+        "rootDir": "./",
         "watch": true
     },
     "exclude": [

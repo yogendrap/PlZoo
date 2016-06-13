@@ -2,7 +2,9 @@ import Connection from './Connection';
 import {IConnection} from './IConnection'
 
 
-export class Database {
+export interface IDatabase {}
+
+export class Database implements IDatabase{
     protected static $databaseInfo = {};
     protected static connections = {};
 

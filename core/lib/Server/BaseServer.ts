@@ -21,7 +21,7 @@ export default class BaseServer {
         // this.response = Object.create(Response);
         this.httpServer = createServer((request, response) => {
             if (callBack) {
-                this.createContext(request, response, callBack);
+                callBack(request, response)
             }
         });
     }
@@ -33,7 +33,7 @@ export default class BaseServer {
     }
     handle(cb: Function) {
         this.httpServer.on('request', (request, response) => {
-            this.createContext(request, response, cb);
+            cb(request, response);
         });
     }
     stop() {

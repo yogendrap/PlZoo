@@ -1,6 +1,8 @@
 import {readFileSync} from 'fs';
 
-interface ISettings {
+
+
+export interface ISettings {
     // storage: Object
 }
 
@@ -9,7 +11,7 @@ interface ISettings {
  *
  * @ingroup utility
  */
-export default class Settings implements ISettings {
+export class Settings implements ISettings {
 
     /**
      * Array with the settings.
